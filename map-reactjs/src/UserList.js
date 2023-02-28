@@ -8,19 +8,27 @@ const UserList = () => {
     { id: 3, name: "Benson" },
     { id: 4, name: "Danial" },
   ]);
+  //handleDeleteUser function, which updates the state by removing the user
+  //with the specified ID from the users array.
+  const handleDeleteUser = (id) => {
+    setUsers(users.filter((user) => user.id !== id));
+  };
   return (
     <div>
       <h1>User List</h1>
-      <ul>
+      <table>
         {/* we use map method to iterate over the user array */}
         {users.map((user) => (
           //use key prop to help React to identify each list item
-          <li key={user.id}>
+          <tr key={user.id}>
             {/* then rendered a list item for each user */}
-            {user.name}
-          </li>
+            <td> {user.name}</td>
+            <td>
+              <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
+            </td>
+          </tr>
         ))}
-      </ul>
+      </table>
     </div>
   );
 };
