@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import UserList from "./ArrowFunction";
 
 function App() {
   const [items, setItems] = useState([
@@ -19,6 +20,7 @@ function App() {
           <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
         </div>
       ))}
+      <UserList />
     </div>
   );
 }
