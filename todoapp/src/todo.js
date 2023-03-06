@@ -1,33 +1,42 @@
 import React, { useState } from "react";
 
 function TodoList() {
-  const [item, setItems] = useState([]);
+  const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState("");
 
   const handleAddItem = () => {
     if (newItem.trim() !== "") {
-      setItems([...item, { text: newItem, completed: false }]);
+      setItems([...items, { text: newItem, completed: false }]);
       setNewItem("");
     }
   };
+
   const handleDeleteItem = (index) => {
-    const newItem = [...item];
-    newItem.splice(index, 1);
-    setItems(newItem);
+    const newItems = [...items];
+    newItems.splice(index, 1);
+    setItems(newItems);
   };
+
   const handleToggleCompleted = (index) => {
-    const newItem = [...item];
-    newItem[index].completed = !newItem[index].completed;
-    setItems(newItem);
+    const newItems = [...items];
+    newItems[index].completed = !newItems[index].completed;
+    setItems(newItems);
   };
 
   return (
     <div>
       <h1>Todo List</h1>
       <ul>
-        {item.map((item, index) => (
+        {items.map((item, index) => (
           <li key={index}>
-            <span onClick={() => handleToggleCompleted}>{item.text}</span>
+            <span
+              style={{
+                textDecoration: item.completed ? "line-through" : "none",
+              }}
+              onClick={() => handleToggleCompleted(index)}
+            >
+              {item.text}
+            </span>
             <button onClick={() => handleDeleteItem(index)}>Delete</button>
           </li>
         ))}
