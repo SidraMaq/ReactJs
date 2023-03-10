@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 function Stopwatch() {
-  //declares a state variable isRunning and sets its initial value to false
-  //declares a function named setIsRunning that can be update the value of isRunning
   const [isRunning, setIsRunning] = useState(false);
-  //declares a state variable elapsedTime and sets initial value 0
   const [elapsedTime, setElapsedTime] = useState(0);
 
   useEffect(() => {
@@ -19,16 +16,13 @@ function Stopwatch() {
     }
     // setInterval function returns an ID that is saved in the "intervalId" variable.
     return () => clearInterval(intervalId);
-    //The useEffect hook is triggered whenever the value of "isRunning" changes,
-    //which ensures that the timer starts and stops based on the value of "isRunning".
   }, [isRunning]);
 
-  //this function toggles the value of the isRunning state variable by using
-  //setIsRunning with the help of prevIsRunning parameter passed to it
   const handleStartStopClick = () => {
     //if current value of isRunning false it will update to true
     setIsRunning((prevIsRunning) => !prevIsRunning);
   };
+
   //this function sets the value of both "isRunning" and "elapsedTime" state variables to their initial values.
   const handleResetClick = () => {
     setIsRunning(false);
@@ -37,18 +31,15 @@ function Stopwatch() {
   //this function takes time in milliseconds as input and return
   //a formated time MM:SS.mm
   const formatTime = (timeInMillis) => {
-    //Calculates the number of minuts based on input
+    //Calculates the number of minuts , seconds and miliseconds based on input
     const minuts = Math.floor(timeInMillis / 60000);
-    //calculates the number of seconds based on input
     const seconds = Math.floor((timeInMillis % 60000) / 1000);
-    //calculates the number of miliseconds based on input
     const milliseconds = Math.floor((timeInMillis % 1000) / 10);
     //converts these values into strings and pads them with leading zeros
     //if necessary using the "padStart" method.
     return `${minuts.toString().padStart(2, "0")}:${seconds
       .toString()
       .padStart(2, "0")}.${milliseconds.toString().padStart(2, "0")}`;
-    //function combines the minutes, seconds, and milliseconds values into a formatted string and returns it.
   };
 
   return (
