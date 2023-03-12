@@ -1,11 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-import FormMsg from "./form";
-
+import React from "react";
+//Example of Conditional Rendering in React
 function App() {
+  const userAge = 30;
   return (
-    <div className="App">
-      <FormMsg />
+    <div>
+      {userAge >= 18 ? (
+        <h1>Welcome to our site!</h1>
+      ) : (
+        <h1>You must be 18 or older to view this site.</h1>
+      )}
     </div>
   );
 }
